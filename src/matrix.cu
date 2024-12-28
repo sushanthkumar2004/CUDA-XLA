@@ -3,5 +3,5 @@
 #include <cuda.h>
 #include <cuda_device_runtime_api.h>
 
-constexpr int BLOCK_SIZE = 512
+constexpr int BLOCK_SIZE = 512;
 
