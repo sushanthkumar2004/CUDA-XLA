@@ -29,3 +29,5 @@ class Vec {
         friend T operator%(const Vec<T>& A, const Vec<T>& B); 
 }
 
+template <typename T>
+T operator%(const Vec<T>& A, const Vec<T>& B);
