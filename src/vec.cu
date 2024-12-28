@@ -91,7 +91,7 @@ __global__ void vec_lp(const T* vec, int size, T p, T* out) {
     size_t idx = threadIdx.x + blockDim.x*blockIdx.x;
 
     while (idx < size) {
-        sdata[thread_index] += pow(gdata[idx], p);
+        sdata[thread_index] += pow(vec[idx], p);
         idx += blockDim.x * gridDim.x;   
     }
 
@@ -104,7 +104,7 @@ __global__ void vec_lp(const T* vec, int size, T p, T* out) {
 
 // dot product 
 template <typename T>
-__global__ void vec_dot(const T* vecA, const T* vecB, int size, T p) {
+__global__ void vec_dot(const T* vecA, const T* vecB, int size, T* out) {
     static_assert(std::is_arithmetic<T>::value, "T must be a numeric type");
 
     __shared__ T sdata[BLOCK_SIZE];
