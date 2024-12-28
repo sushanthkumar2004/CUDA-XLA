@@ -52,5 +52,21 @@ class Vec {
         friend Vec<T> operator-(const Vec<T>& A, const Vec<T>& B);
 
         // dot product [TODO: Add an exterior product]
-        friend Vec<T> operator%(const Vec<T>& A, const Vec<T>& B);
+        friend T operator%(const Vec<T>& A, const Vec<T>& B) {
+            if (A.size() != B.size()) {
+                throw std::invalid_argument("Vectors are not the same size.");
+            }
+
+            T* out_device; 
+            cudaMalloc(&out_device, sizeof(T));
+            vec_dot<<<100,100>>>(A.data_ptr, B.data_ptr, A.size, out_device);
+
+            cudaDeviceSynchronize();
+
+            T out_host; 
+            cudaMemcpy(&out_host, out_device, sizeof(T), cudaMemcpyDeviceToHost);
+
+            return out_host; 
+        }
 }
+

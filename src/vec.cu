@@ -91,13 +91,13 @@ __global__ void vec_lp(const T* vec, int size, T p, T* out) {
     size_t idx = threadIdx.x + blockDim.x*blockIdx.x;
 
     while (idx < size) {
-        sdata[thread_index] += pow(vec[idx], p);
+        sdata[thread_index] += pow(abs(vec[idx]), p);
         idx += blockDim.x * gridDim.x;   
     }
 
     for (unsigned int s=blockDim.x/2; s>0; s>>=1) {
         __syncthreads();
-        if (thread_index < s) sdata[thread_index] += pow(sdata[thread_index + s], p);
+        if (thread_index < s) sdata[thread_index] += pow(abs(sdata[thread_index + s]), p);
     }
     if (thread_index == 0) atomicAdd(out, pow(sdata[0], (T) 1.0 / p));
 }
