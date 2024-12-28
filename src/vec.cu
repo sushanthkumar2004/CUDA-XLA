@@ -6,6 +6,7 @@
 constexpr int BLOCK_SIZE = 512;
 
 // Absolute
+template <typename T>
 __global__ void vec_abs(const T* vecA, const T* vecOut, int size) {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
     if (idx < size) {
