@@ -123,7 +123,7 @@ __global__ void vec_dot(const T* vecA, const T* vecB, int size, T* out) {
 }
 
 template <typename T> 
-T operator%(const Vec<T>& A, const Vec<T>& B) {
+T operator%<T>(const Vec<T>& A, const Vec<T>& B) {
     if (A.size() != B.size()) {
         throw std::invalid_argument("Vectors are not the same size.");
     }
