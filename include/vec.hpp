@@ -1,8 +1,5 @@
 #include <vector>
 
-template <typename T> 
-T operator%(const Vec<T>& A, const Vec<T>& B);
-
 template <typename T>
 class Vec {
     private: 
@@ -27,5 +24,6 @@ class Vec {
         // friend Vec<T> operator-(const Vec<T>& A, const Vec<T>& B);
 
         // dot product [TODO: Add an exterior product]
+        template <typename T>
         friend T operator%(const Vec<T>& A, const Vec<T>& B);
 }
