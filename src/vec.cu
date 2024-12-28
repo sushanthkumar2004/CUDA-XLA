@@ -1,5 +1,4 @@
 #include "vec.hpp"
-#include <vector> 
 
 constexpr int BLOCK_SIZE = 512;
 
