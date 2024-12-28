@@ -1,6 +1,5 @@
 #include "vec.hpp"
 #include <stdexcept>
-#include <iostream> 
 
 constexpr int BLOCK_SIZE = 512;
 
@@ -168,7 +167,7 @@ Vec<T>::Vec(size_t size) : size(size), data_ptr(nullptr) {
 }
 
 template <typename T>
-Vec<T>::Vec(std::vector<T> vec) : size(vec.size()), data_ptr(nullptr) {
+Vec<T>::Vec(const std::vector<T>& vec) : size(vec.size()), data_ptr(nullptr) {
     cudaError_t err = cudaMalloc(&data_ptr, size * sizeof(T));
     if (err != cudaSuccess) {
         std::cerr << "Vec malloc failed: " << cudaGetErrorString(err) << std::endl;

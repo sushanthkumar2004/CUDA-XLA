@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION 3.28)
 project(xla)
 option(USE_CUDA "Use CUDA" ON)
-
 file(GLOB cpu_src "${CMAKE_SOURCE_DIR}/src/*.cpp")
 file(GLOB gpu_src "${CMAKE_SOURCE_DIR}/src/*.cu")
+message(STATUS "CPU Source Files: ${cpu_src}")
+message(STATUS "GPU Source Files: ${gpu_src}")
 enable_language("CUDA")
 add_executable(xla ${cpu_src} ${gpu_src})
 target_include_directories(xla PRIVATE include)
