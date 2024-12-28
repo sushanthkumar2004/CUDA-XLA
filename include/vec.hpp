@@ -12,7 +12,7 @@ class Vec {
         Vec(size_t size);
 
         // initialize from vector of values 
-        Vec(std::vector<T> vec);
+        Vec(const std::vector<T>& vec);
 
         // destructor for device memory 
         ~Vec(); 
