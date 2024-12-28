@@ -24,6 +24,6 @@ class Vec {
         // friend Vec<T> operator-(const Vec<T>& A, const Vec<T>& B);
 
         // dot product [TODO: Add an exterior product]
-        template <typename T>
-        friend T operator%(const Vec<T>& A, const Vec<T>& B);
-}
+        template <typename U> 
+        friend U operator%(const Vec<U>& A, const Vec<U>& B);
+};

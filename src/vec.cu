@@ -1,4 +1,5 @@
 #include "vec.hpp"
+#include <stdexcept>
 
 constexpr int BLOCK_SIZE = 512;
 
@@ -144,7 +145,7 @@ T operator%(const Vec<T>& A, const Vec<T>& B) {
 
 template <typename T>
 Vec<T>::~Vec() {
-    cudaError_t err = cudaFree(d_data);
+    cudaError_t err = cudaFree(data_ptr);
     if (err != cudaSuccess) {
         std::cerr << "Vec destructor failed to delete device pointer: " << cudaGetErrorString(err) << std::endl;
     }
