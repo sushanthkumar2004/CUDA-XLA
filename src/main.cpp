@@ -2,7 +2,6 @@
 #include "gpu.hpp"
 #include "vec.hpp"
 #include <vector>
-#include <iostream> 
 
 int main()
 {

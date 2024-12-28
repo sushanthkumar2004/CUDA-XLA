@@ -1,5 +1,6 @@
 #include "vec.hpp"
 #include <stdexcept>
+#include <iostream> 
 
 constexpr int BLOCK_SIZE = 512;
 
