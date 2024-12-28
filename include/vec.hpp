@@ -1,5 +1,8 @@
 #include <vector>
 
+template <typename T> 
+T operator%(const Vec<T>& A, const Vec<T>& B);
+
 template <typename T>
 class Vec {
     private: 
@@ -17,10 +20,6 @@ class Vec {
         // destructor for device memory 
         ~Vec(); 
 
-        T norm() {
-            return (T) 0; 
-        }
-
         // element-wise operators 
         // friend Vec<T> operator+(const Vec<T>& A, const Vec<T>& B);
         // friend Vec<T> operator*(const Vec<T>& A, const Vec<T>& B);
@@ -28,7 +27,7 @@ class Vec {
         // friend Vec<T> operator-(const Vec<T>& A, const Vec<T>& B);
 
         // dot product [TODO: Add an exterior product]
-        friend T operator%<T>(const Vec<T>& A, const Vec<T>& B);
+        friend T operator%(const Vec<T>& A, const Vec<T>& B);
 }
 
 template <typename T>
