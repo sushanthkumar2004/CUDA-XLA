@@ -2,6 +2,7 @@
 #include "gpu.hpp"
 #include "vec.hpp"
 #include <vector>
+#include <iostream> 
 
 int main()
 {
@@ -14,15 +15,15 @@ int main()
     std::cout << "CUDA: Off" << std::endl;
 #endif
 
-    // std::vector<double> vec; 
-    // for (int i=0; i<10000; i++) {
-    //     vec.push_back(1.0); 
-    // }
+    std::vector<double> vec; 
+    for (int i=0; i<10000; i++) {
+        vec.push_back(1.0); 
+    }
 
-    // Vec<double> vector(vec); 
+    Vec<double> vector(vec); 
 
-    // double product = vector%vector;
-    // std::cout << product << std::endl; 
+    double product = vector%vector;
+    std::cout << product << std::endl; 
 
     return 0;
 }
