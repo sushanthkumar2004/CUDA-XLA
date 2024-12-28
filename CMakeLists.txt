@@ -4,7 +4,7 @@ option(USE_CUDA "Use CUDA" ON)
 
 file(GLOB cpu_src "${CMAKE_SOURCE_DIR}/src/*.cpp")
 file(GLOB gpu_src "${CMAKE_SOURCE_DIR}/src/*.cu")
-
+target_include_directories(xla PRIVATE include)
 enable_language("CUDA")
 add_executable(xla ${cpu_src} ${gpu_src})
 add_definitions(-DUSE_CUDA)

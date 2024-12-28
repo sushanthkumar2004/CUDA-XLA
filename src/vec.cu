@@ -1,3 +1,4 @@
+#include "vec.hpp"
 constexpr int BLOCK_SIZE = 512;
 
 // Absolute
@@ -118,4 +119,55 @@ __global__ void vec_dot(const T* vecA, const T* vecB, int size, T* out) {
         if (thread_index < s) sdata[thread_index] += vecA[thread_index + s] * vecB[thread_index + s];
     }
     if (thread_index == 0) atomicAdd(out, sdata[0]);
+}
+
+template <typename T> 
+T operator%(const Vec<T>& A, const Vec<T>& B) {
+    if (A.size() != B.size()) {
+        throw std::invalid_argument("Vectors are not the same size.");
+    }
+
+    T* out_device; 
+    cudaMalloc(&out_device, sizeof(T));
+    vec_dot<<<100,100>>>(A.data_ptr, B.data_ptr, A.size, out_device);
+
+    cudaDeviceSynchronize();
+
+    T out_host; 
+    cudaMemcpy(&out_host, out_device, sizeof(T), cudaMemcpyDeviceToHost);
+
+    return out_host; 
+}
+
+template <typename T>
+Vec<T>::~Vec() {
+    cudaError_t err = cudaFree(d_data);
+    if (err != cudaSuccess) {
+        std::cerr << "Vec destructor failed to delete device pointer: " << cudaGetErrorString(err) << std::endl;
+    }
+}
+
+template <typename T>
+Vec<T>::Vec(size_t size) : size(size), data_ptr(nullptr) {
+    cudaError_t err = cudaMalloc(&data_ptr, size * sizeof(T));
+    if (err != cudaSuccess) {
+        std::cerr << "Vec malloc failed: " << cudaGetErrorString(err) << std::endl;
+        std::terminate(); 
+    }
+
+    cudaError_t memset_err = cudaMemset(data_ptr, 0, size * sizeof(T));
+    if (memset_err != cudaSuccess) {
+        std::cerr << "Setting memory to zeros failed: " << cudaGetErrorString(err) << std::endl;
+        std::terminate();
+    }
+}
+
+template <typename T>
+Vec<T>::Vec(std::vector<T> vec) : size(vec.size()), data_ptr(nullptr) {
+    cudaError_t err = cudaMalloc(&data_ptr, size * sizeof(T));
+    if (err != cudaSuccess) {
+        std::cerr << "Vec malloc failed: " << cudaGetErrorString(err) << std::endl;
+        std::terminate(); 
+    }
+    cudaMemcpy(data_ptr, vec.data(), size * sizeof(T), cudaMemcpyHostToDevice);
 }
