@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <iostream> 
 
+
 constexpr int BLOCK_SIZE = 512;
 
 // Absolute
