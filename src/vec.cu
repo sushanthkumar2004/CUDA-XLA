@@ -2,7 +2,6 @@
 #include <stdexcept>
 #include <iostream> 
 
-
 constexpr int BLOCK_SIZE = 512;
 
 // Absolute
@@ -133,7 +132,7 @@ T operator%(const Vec<T>& A, const Vec<T>& B) {
 
     T* out_device; 
     cudaMalloc(&out_device, sizeof(T));
-    vec_dot<<<100,100>>>(A.data_ptr, B.data_ptr, A.size, out_device);
+    vec_dot<<<100,1024>>>(A.data_ptr, B.data_ptr, A.size, out_device);
 
     cudaDeviceSynchronize();
 

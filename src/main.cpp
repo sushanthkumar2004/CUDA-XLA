@@ -16,7 +16,7 @@ int main()
 
     std::vector<double> vec; 
     for (int i=0; i<10000; i++) {
-        vec.push_back(1.0); 
+        vec.push_back(1.0f); 
     }
 
     Vec<double> vector(vec); 
