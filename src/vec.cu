@@ -145,7 +145,7 @@ T operator%(const Vec<T>& A, const Vec<T>& B) {
 }
 
 template <typename T>
-Vec<T>::~Vec() {
+Vec::~Vec() {
     cudaError_t err = cudaFree(data_ptr);
     if (err != cudaSuccess) {
         std::cerr << "Vec destructor failed to delete device pointer: " << cudaGetErrorString(err) << std::endl;
@@ -153,7 +153,7 @@ Vec<T>::~Vec() {
 }
 
 template <typename T>
-Vec<T>::Vec(size_t size) : size(size), data_ptr(nullptr) {
+Vec::Vec(size_t size) : size(size), data_ptr(nullptr) {
     cudaError_t err = cudaMalloc(&data_ptr, size * sizeof(T));
     if (err != cudaSuccess) {
         std::cerr << "Vec malloc failed: " << cudaGetErrorString(err) << std::endl;
@@ -168,7 +168,7 @@ Vec<T>::Vec(size_t size) : size(size), data_ptr(nullptr) {
 }
 
 template <typename T>
-Vec<T>::Vec(const std::vector<T>& vec) : size(vec.size()), data_ptr(nullptr) {
+Vec::Vec(const std::vector<T>& vec) : size(vec.size()), data_ptr(nullptr) {
     cudaError_t err = cudaMalloc(&data_ptr, size * sizeof(T));
     if (err != cudaSuccess) {
         std::cerr << "Vec malloc failed: " << cudaGetErrorString(err) << std::endl;

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.28)
-project(xla)
+project(xla LANGUAGES CUDA CXX)
 option(USE_CUDA "Use CUDA" ON)
 file(GLOB cpu_src "${CMAKE_SOURCE_DIR}/src/*.cpp")
 file(GLOB gpu_src "${CMAKE_SOURCE_DIR}/src/*.cu")
