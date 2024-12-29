@@ -21,8 +21,8 @@ int main()
 
     Vec<double> vector((size_t) 200); 
 
-    // double product = vector%vector;
-    // std::cout << product << std::endl; 
+    double product = vector%vector;
+    std::cout << product << std::endl; 
 
     return 0;
 }
