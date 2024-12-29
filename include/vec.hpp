@@ -32,5 +32,5 @@ class Vec {
         friend U operator%(const Vec<U>& A, const Vec<U>& B);
 };
 
-extern template class Vec<float>;
-extern template class Vec<double>;
+// extern template class Vec<float>;
+// extern template class Vec<double>;

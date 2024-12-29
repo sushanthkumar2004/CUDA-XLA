@@ -178,7 +178,7 @@ Vec<T>::Vec(const std::vector<T>& vec) : size(vec.size()), data_ptr(nullptr) {
     cudaMemcpy(data_ptr, vec.data(), size * sizeof(T), cudaMemcpyHostToDevice);
 }
 
-template class Vec<float>;
-template class Vec<double>;
-template float operator%<float>(const Vec<float>&, const Vec<float>&);
-template double operator%<double>(const Vec<double>&, const Vec<double>&);
+// template class Vec<float>;
+// template class Vec<double>;
+// template float operator%<float>(const Vec<float>&, const Vec<float>&);
+// template double operator%<double>(const Vec<double>&, const Vec<double>&);
