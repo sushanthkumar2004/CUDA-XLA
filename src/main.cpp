@@ -19,7 +19,7 @@ int main()
         vec.push_back(1.0); 
     }
 
-    Vec<double> vector((size_t) 200); 
+    Vec<double> vector(vec); 
 
     double product = vector%vector;
     std::cout << product << std::endl; 
