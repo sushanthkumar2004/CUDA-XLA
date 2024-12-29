@@ -1,5 +1,4 @@
 #include <vector>
-#include "vec.cu"
 
 template <typename T>
 class Vec {
