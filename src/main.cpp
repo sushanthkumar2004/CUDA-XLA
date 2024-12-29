@@ -19,10 +19,10 @@ int main()
         vec.push_back(1.0); 
     }
 
-    Vec<double> vector(vec); 
+    // Vec<double> vector(vec); 
 
-    double product = vector%vector;
-    std::cout << product << std::endl; 
+    // double product = vector%vector;
+    // std::cout << product << std::endl; 
 
     return 0;
 }

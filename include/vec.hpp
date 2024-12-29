@@ -8,6 +8,9 @@ class Vec {
         T* data_ptr; 
 
     public:
+        static_assert(std::is_same<T, float>::value || std::is_same<T, double>::value, 
+                    "Vec<T> can only be instantiated with float or double.");
+
         // initialize vector of zeros 
         Vec(size_t size);
 
