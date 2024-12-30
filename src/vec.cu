@@ -108,8 +108,10 @@ __global__ void vec_dot(const T* vecA, const T* vecB, int size, T* out) {
 
     __shared__ T sdata[BLOCK_SIZE];
 
+    printf("Hello from thread %d in block %d\n", threadIdx.x, blockIdx.x);
+
     int thread_index = threadIdx.x;
-    sdata[threadIdx.x] = 0;
+    sdata[thread_index] = 0;
     size_t idx = threadIdx.x + blockDim.x*blockIdx.x;
 
     while (idx < size) {
